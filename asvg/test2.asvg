@@ -1,0 +1,59 @@
+<svg
+	xmlns = "http://www.w3.org/2000/svg"
+	viewBox = "0 0 [[W;1000;0]] [[H;1000;0]] "
+	width = "[[W;1000;0]]"
+	height = "[[H;1000;0]]" > 
+	<defs>
+		<pattern id="userpattern" x="0" y="0" width="[[P;256;0]]" height="[[P;256;0]]" patternUnits="userSpaceOnUse" >
+			<image href="printbrush.png" height="[[P;256;0]]" width="[[P;256;0]]" />
+		</pattern>
+		<pattern id="bluepattern" x="0" y="0" width="[[P;256;0]]" height="[[P;256;0]]" patternUnits="userSpaceOnUse" >
+			<image href="blueprint.png" height="[[P;256;0]]" width="[[P;256;0]]" />
+		</pattern> \
+		<mask  id="main_mask">
+			<rect  x="0" y="0" fill="url(#userpattern)" width="[[W;1000;0]]" height="[[H;1000;0]]" />
+		</mask>
+	</defs>
+	<path 
+		style = "fill:url(#bluepattern);fill-opacity:1;stroke:none;stroke-width:20;stroke-dasharray:none;stroke-opacity:1" 
+		width = "[[W;1000;0]]" 
+		height = "[[H;1000;0]]" 
+		x = "0" 
+		y = "0" 
+		d = "M 85,35 
+			h [[W;1000;-170]] 
+			a 50, 50 0 0 1 50, 50 
+			v [[H;1000;-170]] 
+			a 50, 50 0 0 1 -50, 50 
+			h [[W;-1000;170]] 
+			a 50, 50 0 0 1 -50, -50 
+			v [[H;-1000;170]] 
+			a 50, 50 0 0 1 50, -50 " 
+	/>
+	<g mask="url(#main_mask)">
+		<path 
+			style = "fill:none;fill-opacity:1;stroke:#000000;stroke-width:20;stroke-dasharray:none;stroke-opacity:1"
+			width = "[[W;1000;0]]"
+			height = "[[H;1000;0]]"
+			x = "0" 
+			y = "0" 
+			d = "M 85,35 
+				h [[W;1000;-170]] 
+				a 50, 50 0 0 1 50, 50 
+				v [[H;1000;-170]] 
+				a 50, 50 0 0 1 -50, 50 
+				h [[W;-1000;170]] 
+				a 50, 50 0 0 1 -50, -50 
+				v [[H;-1000;170]] 
+				a 50, 50 0 0 1 50, -50 " 
+			/> 
+		<path 
+			style = "fill:none;fill-opacity:1;stroke:#000000;stroke-width:40;stroke-dasharray:none;stroke-opacity:1" 
+			d = "M [[W;500;-370]]  [[H;500;-110]] 
+				l 80 300 
+				c 0, 0 80, -540 170, -380 
+				c 60, 110 120, 580 150, 430 
+				c 60, -160 120, -210 150, -310" 
+		/> 
+	</g> 
+</svg>

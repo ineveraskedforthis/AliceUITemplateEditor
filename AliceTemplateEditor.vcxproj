@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{2ea70b19-3288-4e00-a2e3-4710cc11d28c}</ProjectGuid>
+    <RootNamespace>AliceTemplateEditor</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\VSProjects\AliceTemplateEditor\GLFW;C:\VSProjects\AliceTemplateEditor\lunasvg;C:\VSProjects\AliceTemplateEditor\plutovg;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\VSProjects\AliceTemplateEditor\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\VSProjects\AliceTemplateEditor\GLFW;C:\VSProjects\AliceTemplateEditor\lunasvg;C:\VSProjects\AliceTemplateEditor\plutovg;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\VSProjects\AliceTemplateEditor\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>C:\VSProjects\AliceTemplateEditor\agg\include;C:\VSProjects\AliceTemplateEditor\rasterimage;C:\VSProjects\AliceTemplateEditor\veg;C:\VSProjects\AliceTemplateEditor\svgdom\elements;C:\VSProjects\AliceTemplateEditor\svgdom\util;C:\VSProjects\AliceTemplateEditor\r4;C:\VSProjects\AliceTemplateEditor\papki;C:\VSProjects\AliceTemplateEditor\svgdom;C:\VSProjects\AliceTemplateEditor\svgren;C:\VSProjects\AliceTemplateEditor\cssom;C:\VSProjects\AliceTemplateEditor\utki;C:\VSProjects\AliceTemplateEditor\mikroxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3dll.lib;opengl32.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3dll.lib;opengl32.lib;Shcore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="asvg.hpp" />
+    <ClInclude Include="eglew.h" />
+    <ClInclude Include="filesystem.hpp" />
+    <ClInclude Include="glew.h" />
+    <ClInclude Include="GLFW\glfw3.h" />
+    <ClInclude Include="GLFW\glfw3native.h" />
+    <ClInclude Include="glxew.h" />
+    <ClInclude Include="imconfig.h" />
+    <ClInclude Include="imgui.h" />
+    <ClInclude Include="imgui_impl_glfw.h" />
+    <ClInclude Include="imgui_impl_opengl3.h" />
+    <ClInclude Include="imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="imgui_internal.h" />
+    <ClInclude Include="imgui_stdlib.h" />
+    <ClInclude Include="imstb_rectpack.h" />
+    <ClInclude Include="imstb_textedit.h" />
+    <ClInclude Include="imstb_truetype.h" />
+    <ClInclude Include="lunasvg\graphics.h" />
+    <ClInclude Include="lunasvg\lunasvg.h" />
+    <ClInclude Include="lunasvg\svgelement.h" />
+    <ClInclude Include="lunasvg\svggeometryelement.h" />
+    <ClInclude Include="lunasvg\svglayoutstate.h" />
+    <ClInclude Include="lunasvg\svgpaintelement.h" />
+    <ClInclude Include="lunasvg\svgparserutils.h" />
+    <ClInclude Include="lunasvg\svgproperty.h" />
+    <ClInclude Include="lunasvg\svgrenderstate.h" />
+    <ClInclude Include="lunasvg\svgtextelement.h" />
+    <ClInclude Include="plutovg\plutovg-ft-math.h" />
+    <ClInclude Include="plutovg\plutovg-ft-raster.h" />
+    <ClInclude Include="plutovg\plutovg-ft-stroker.h" />
+    <ClInclude Include="plutovg\plutovg-ft-types.h" />
+    <ClInclude Include="plutovg\plutovg-private.h" />
+    <ClInclude Include="plutovg\plutovg-stb-image-write.h" />
+    <ClInclude Include="plutovg\plutovg-stb-image.h" />
+    <ClInclude Include="plutovg\plutovg-stb-truetype.h" />
+    <ClInclude Include="plutovg\plutovg-utils.h" />
+    <ClInclude Include="plutovg\plutovg.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="templateproject.hpp" />
+    <ClInclude Include="wglew.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="asvg.cpp" />
+    <ClCompile Include="filesystem.cpp" />
+    <ClCompile Include="glew.c" />
+    <ClCompile Include="imgui.cpp" />
+    <ClCompile Include="imgui_demo.cpp" />
+    <ClCompile Include="imgui_draw.cpp" />
+    <ClCompile Include="imgui_impl_glfw.cpp" />
+    <ClCompile Include="imgui_impl_opengl3.cpp" />
+    <ClCompile Include="imgui_stdlib.cpp" />
+    <ClCompile Include="imgui_tables.cpp" />
+    <ClCompile Include="imgui_widgets.cpp" />
+    <ClCompile Include="lunasvg\graphics.cpp" />
+    <ClCompile Include="lunasvg\lunasvg.cpp" />
+    <ClCompile Include="lunasvg\svgelement.cpp" />
+    <ClCompile Include="lunasvg\svggeometryelement.cpp" />
+    <ClCompile Include="lunasvg\svglayoutstate.cpp" />
+    <ClCompile Include="lunasvg\svgpaintelement.cpp" />
+    <ClCompile Include="lunasvg\svgparser.cpp" />
+    <ClCompile Include="lunasvg\svgproperty.cpp" />
+    <ClCompile Include="lunasvg\svgrenderstate.cpp" />
+    <ClCompile Include="lunasvg\svgtextelement.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="plutovg\plutovg-blend.c" />
+    <ClCompile Include="plutovg\plutovg-canvas.c" />
+    <ClCompile Include="plutovg\plutovg-font.c" />
+    <ClCompile Include="plutovg\plutovg-ft-math.c" />
+    <ClCompile Include="plutovg\plutovg-ft-raster.c" />
+    <ClCompile Include="plutovg\plutovg-ft-stroker.c" />
+    <ClCompile Include="plutovg\plutovg-matrix.c" />
+    <ClCompile Include="plutovg\plutovg-paint.c" />
+    <ClCompile Include="plutovg\plutovg-path.c" />
+    <ClCompile Include="plutovg\plutovg-rasterize.c" />
+    <ClCompile Include="plutovg\plutovg-surface.c" />
+    <ClCompile Include="project_serialization.cpp" />
+    <ClCompile Include="texture.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

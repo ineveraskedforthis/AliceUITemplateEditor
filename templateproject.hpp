@@ -204,9 +204,20 @@ struct progress_bar_template {
 
 	bool display_percentage_text = false;
 };
+struct table_template {
+	std::string display_name;
+	std::string temp_display_name;
+
+	int32_t arrow_increasing = -1;
+	int32_t arrow_decreasing = -1;
+	int32_t table_color = 0;
+	int32_t interactable_header_bg = -1;
+	int32_t active_header_bg = -1;
+};
+
 
 enum class template_type : uint8_t{ 
-	none, background, color, icon, label, button, progress_bar, window, iconic_button, layout_region, mixed_button, toggle_button
+	none, background, color, icon, label, button, progress_bar, window, iconic_button, layout_region, mixed_button, toggle_button, table
 };
 
 struct project {
@@ -223,6 +234,7 @@ struct project {
 	std::vector< background_definition> backgrounds;
 	std::vector<mixed_template> mixed_button_t;
 	std::vector<toggle_button_template> toggle_button_t;
+	std::vector<table_template> table_t;
 	std::vector< icon_definition> icons;
 	std::vector<color_definition> colors;
 };

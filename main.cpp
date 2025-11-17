@@ -1377,7 +1377,36 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			}
 			ImGui::TreePop();
 		}
+		if(ImGui::TreeNodeEx("Table templates", base_tree_flags)) {
+			for(auto& i : thm.table_t) {
+				auto flags = base_tree_flags | (selected_type == template_project::template_type::table && selected_template == int32_t(std::distance(thm.table_t.data(), &i)) ? ImGuiTreeNodeFlags_Selected : 0);
+				if(ImGui::TreeNodeEx(i.display_name.c_str(), flags)) {
+					if(ImGui::IsItemClicked()) {
+						selected_type = template_project::template_type::table;
+						selected_template = int32_t(std::distance(thm.table_t.data(), &i));
+					}
 
+					make_name_change(i.temp_display_name, i.display_name, thm.table_t);
+					make_color_combo_box(i.table_color, "Line color", thm);
+					make_background_combo_box(i.interactable_header_bg, "Interactable header background", thm);
+					make_background_combo_box(i.active_header_bg, "Active header background", thm);
+					make_icon_combo_box(i.arrow_increasing, "Increasing sort arrow", thm);
+					make_icon_combo_box(i.arrow_decreasing, "Decreasing sort arrow", thm);
+
+					ImGui::TreePop();
+				}
+			}
+			if(ImGui::Button("Add table")) {
+				thm.table_t.emplace_back();
+				thm.table_t.back().display_name = "new table";
+			}
+			if(!thm.table_t.empty()) {
+				if(ImGui::Button("Delete table")) {
+					thm.table_t.pop_back();
+				}
+			}
+			ImGui::TreePop();
+		}
 
 
 

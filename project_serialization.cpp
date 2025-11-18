@@ -282,6 +282,20 @@ void project_to_bytes(project const& p, serialization::out_buffer& buffer) {
 		buffer.finish_section();
 	}
 	buffer.finish_section();
+
+	//stacked bar charts
+	buffer.start_section();
+	for(auto& i : t.stacked_bar_t) {
+		buffer.start_section();
+		buffer.write(i.display_name);
+		buffer.write(i.overlay_bg);
+		buffer.write(i.l_margin);
+		buffer.write(i.t_margin);
+		buffer.write(i.r_margin);
+		buffer.write(i.b_margin);
+		buffer.finish_section();
+	}
+	buffer.finish_section();
 	
 }
 
@@ -544,6 +558,19 @@ project bytes_to_project(serialization::in_buffer& buffer) {
 			indv_tb.read(i.active_header_bg);
 		}
 	
+		auto stacked_bar_section = buffer.read_section();
+		while(stacked_bar_section) {
+			result.stacked_bar_t.emplace_back();
+			auto indv_tb = stacked_bar_section.read_section();
+			auto& i = result.stacked_bar_t.back();
+
+			indv_tb.read(i.display_name);
+			indv_tb.read(i.overlay_bg);
+			indv_tb.read(i.l_margin);
+			indv_tb.read(i.t_margin);
+			indv_tb.read(i.r_margin);
+			indv_tb.read(i.b_margin);
+		}
 	return result;
 }
 

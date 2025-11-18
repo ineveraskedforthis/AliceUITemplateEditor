@@ -1407,7 +1407,36 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			}
 			ImGui::TreePop();
 		}
+		if(ImGui::TreeNodeEx("Stacked bar chart templates", base_tree_flags)) {
+			for(auto& i : thm.stacked_bar_t) {
+				auto flags = base_tree_flags | (selected_type == template_project::template_type::stacked_bar_chart && selected_template == int32_t(std::distance(thm.stacked_bar_t.data(), &i)) ? ImGuiTreeNodeFlags_Selected : 0);
+				if(ImGui::TreeNodeEx(i.display_name.c_str(), flags)) {
+					if(ImGui::IsItemClicked()) {
+						selected_type = template_project::template_type::stacked_bar_chart;
+						selected_template = int32_t(std::distance(thm.stacked_bar_t.data(), &i));
+					}
 
+					make_name_change(i.temp_display_name, i.display_name, thm.stacked_bar_t);
+					make_background_combo_box(i.overlay_bg, "Overlay", thm);
+					ImGui::InputFloat("Left margin (in grid units)", &i.l_margin);
+					ImGui::InputFloat("Top margin (in grid units)", &i.t_margin);
+					ImGui::InputFloat("Right margin (in grid units)", &i.r_margin);
+					ImGui::InputFloat("Bottom margin (in grid units)", &i.b_margin);
+
+					ImGui::TreePop();
+				}
+			}
+			if(ImGui::Button("Add stacked bar chart")) {
+				thm.stacked_bar_t.emplace_back();
+				thm.stacked_bar_t.back().display_name = "new stacked bar chart";
+			}
+			if(!thm.stacked_bar_t.empty()) {
+				if(ImGui::Button("Delete stacked bar chart")) {
+					thm.stacked_bar_t.pop_back();
+				}
+			}
+			ImGui::TreePop();
+		}
 
 
 		ImGui::End();
@@ -1882,6 +1911,23 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 
 						// TODO: sub controls
 					}
+					break;
+				case template_project::template_type::stacked_bar_chart:
+					if(0 <= selected_template && selected_template < int32_t(thm.stacked_bar_t.size())) {
+						auto bg = thm.stacked_bar_t[selected_template].overlay_bg;
+						if(bg != -1) {
+							int32_t hcursor = 0;
+							int32_t vcursor = 0;
+							int32_t next_line = 0;
+							render_asvg_rect(thm.backgrounds[bg].renders, hcursor, vcursor, next_line, 12, 3, 8);
+						}	
+					}
+					render_hollow_rect(color3f{ 1.f, 1.f, 0.f },
+						drag_offset_x  + 8 * thm.stacked_bar_t[selected_template].l_margin * ui_scale,
+						drag_offset_y + 8 * thm.stacked_bar_t[selected_template].t_margin * ui_scale,
+						std::max(1, int32_t(8 * (12 - (thm.stacked_bar_t[selected_template].l_margin + thm.stacked_bar_t[selected_template].r_margin)) * ui_scale)),
+						std::max(1, int32_t(8 * (3 - (thm.stacked_bar_t[selected_template].t_margin + thm.stacked_bar_t[selected_template].b_margin)) * ui_scale))
+					);
 					break;
 				case template_project::template_type::progress_bar:
 					if(0 <= selected_template && selected_template < int32_t(thm.progress_bar_t.size())) {

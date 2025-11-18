@@ -204,6 +204,15 @@ struct progress_bar_template {
 
 	bool display_percentage_text = false;
 };
+struct stacked_bar_template {
+	std::string display_name;
+	std::string temp_display_name;
+	int32_t overlay_bg = -1;
+	float l_margin = 0.0f;
+	float t_margin = 0.0f;
+	float r_margin = 0.0f;
+	float b_margin = 0.0f;
+};
 struct table_template {
 	std::string display_name;
 	std::string temp_display_name;
@@ -217,7 +226,7 @@ struct table_template {
 
 
 enum class template_type : uint8_t{ 
-	none, background, color, icon, label, button, progress_bar, window, iconic_button, layout_region, mixed_button, toggle_button, table
+	none, background, color, icon, label, button, progress_bar, window, iconic_button, layout_region, mixed_button, toggle_button, table, stacked_bar_chart
 };
 
 struct project {
@@ -235,6 +244,7 @@ struct project {
 	std::vector<mixed_template> mixed_button_t;
 	std::vector<toggle_button_template> toggle_button_t;
 	std::vector<table_template> table_t;
+	std::vector< stacked_bar_template> stacked_bar_t;
 	std::vector< icon_definition> icons;
 	std::vector<color_definition> colors;
 };

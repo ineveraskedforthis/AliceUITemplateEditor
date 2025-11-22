@@ -297,6 +297,27 @@ void project_to_bytes(project const& p, serialization::out_buffer& buffer) {
 	}
 	buffer.finish_section();
 	
+	//drop downs
+	buffer.start_section();
+	for(auto& i : t.drop_down_t) {
+		buffer.start_section();
+		buffer.write(i.display_name);
+		buffer.write(i.primary_bg);
+		buffer.write(i.active_bg);
+		buffer.write(i.disabled_bg);
+
+		buffer.write(i.list_button);
+		buffer.write(i.list_button_alt);
+		buffer.write(i.selection_icon);
+		buffer.write(i.layout_region_base);
+
+		buffer.write(i.dropdown_window_bg);
+		buffer.write(i.dropdown_window_margin);
+		buffer.write(i.animate_active_transition);
+		buffer.write(i.vertical_nudge);
+		buffer.finish_section();
+	}
+	buffer.finish_section();
 }
 
 project bytes_to_project(serialization::in_buffer& buffer) {
@@ -570,6 +591,30 @@ project bytes_to_project(serialization::in_buffer& buffer) {
 			indv_tb.read(i.t_margin);
 			indv_tb.read(i.r_margin);
 			indv_tb.read(i.b_margin);
+		}
+
+		auto drop_down_section = buffer.read_section();
+		while(drop_down_section) {
+			result.drop_down_t.emplace_back();
+			auto indv_tb = drop_down_section.read_section();
+			auto& i = result.drop_down_t.back();
+
+			indv_tb.read(i.display_name);
+			indv_tb.read(i.primary_bg);
+			indv_tb.read(i.active_bg);
+			indv_tb.read(i.disabled_bg);
+
+			indv_tb.read(i.list_button);
+			indv_tb.read(i.list_button_alt);
+			indv_tb.read(i.selection_icon);
+			indv_tb.read(i.layout_region_base);
+
+			indv_tb.read(i.dropdown_window_bg);
+			indv_tb.read(i.dropdown_window_margin);
+
+			indv_tb.read(i.animate_active_transition);
+
+			indv_tb.read(i.vertical_nudge);
 		}
 	return result;
 }

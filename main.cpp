@@ -1437,7 +1437,68 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			}
 			ImGui::TreePop();
 		}
+		if(ImGui::TreeNodeEx("Drop down control templates", base_tree_flags)) {
+			for(auto& i : thm.drop_down_t) {
+				auto flags = base_tree_flags | (selected_type == template_project::template_type::dropdown && selected_template == int32_t(std::distance(thm.drop_down_t.data(), &i)) ? ImGuiTreeNodeFlags_Selected : 0);
+				if(ImGui::TreeNodeEx(i.display_name.c_str(), flags)) {
+					if(ImGui::IsItemClicked()) {
+						selected_type = template_project::template_type::dropdown;
+						selected_template = int32_t(std::distance(thm.drop_down_t.data(), &i));
+					}
 
+					make_name_change(i.temp_display_name, i.display_name, thm.drop_down_t);
+					make_background_combo_box(i.primary_bg, "Primary appearance", thm);
+					make_background_combo_box(i.active_bg, "Active appearance", thm);
+					make_background_combo_box(i.disabled_bg, "Disabled appearance", thm);
+					
+					{
+						int32_t combo_selection = i.list_button + 1;
+						std::vector<char const*> options;
+						options.push_back("--None--");
+
+						for(auto& c : thm.mixed_button_t) {
+							options.push_back(c.display_name.c_str());
+						}
+
+						if(ImGui::Combo("Primary row button", &combo_selection, options.data(), int32_t(options.size()))) {
+							i.list_button = combo_selection - 1;
+						}
+					}
+					{
+						int32_t combo_selection = i.list_button_alt + 1;
+						std::vector<char const*> options;
+						options.push_back("--None--");
+
+						for(auto& c : thm.mixed_button_t) {
+							options.push_back(c.display_name.c_str());
+						}
+
+						if(ImGui::Combo("Alternate row button", &combo_selection, options.data(), int32_t(options.size()))) {
+							i.list_button_alt = combo_selection - 1;
+						}
+					}
+					make_icon_combo_box(i.selection_icon, "Selection icon", thm);
+					make_layout_region_combo_box(i.layout_region_base, "Selection buttons template", thm);
+					make_background_combo_box(i.dropdown_window_bg, "List background", thm);
+					ImGui::InputFloat("List margins (in grid units)", &i.dropdown_window_margin);
+					ImGui::InputInt("Vertical label nudge (in pixels)", &i.vertical_nudge);
+					ImGui::Checkbox("Animate active transition", &i.animate_active_transition);
+
+					ImGui::TreePop();
+				}
+			}
+			if(ImGui::Button("Add drop down control")) {
+				thm.drop_down_t.emplace_back();
+				thm.drop_down_t.back().display_name = "new drop down control";
+			}
+			if(!thm.drop_down_t.empty()) {
+				if(ImGui::Button("Delete drop down control")) {
+					thm.drop_down_t.pop_back();
+				}
+			}
+			ImGui::TreePop();
+		}
+		
 
 		ImGui::End();
 
@@ -1928,6 +1989,61 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 						std::max(1, int32_t(8 * (12 - (thm.stacked_bar_t[selected_template].l_margin + thm.stacked_bar_t[selected_template].r_margin)) * ui_scale)),
 						std::max(1, int32_t(8 * (3 - (thm.stacked_bar_t[selected_template].t_margin + thm.stacked_bar_t[selected_template].b_margin)) * ui_scale))
 					);
+					break;
+				case template_project::template_type::dropdown:
+					if(0 <= selected_template && selected_template < int32_t(thm.drop_down_t.size())) {
+						int32_t hcursor = 0;
+						int32_t vcursor = 0;
+						int32_t next_line = 0;
+
+						auto bg = thm.drop_down_t[selected_template].primary_bg;
+						if(bg != -1) {
+							render_asvg_rect(thm.backgrounds[bg].renders, hcursor, vcursor, next_line, 48, 3, 9);
+							vcursor = next_line;
+							hcursor = 0;
+						}
+						bg = thm.drop_down_t[selected_template].active_bg;
+						if(bg != -1) {
+							render_asvg_rect(thm.backgrounds[bg].renders, hcursor, vcursor, next_line, 12, 3, 8);
+							vcursor = next_line;
+							hcursor = 0;
+						}
+						bg = thm.drop_down_t[selected_template].disabled_bg;
+						if(bg != -1) {
+							render_asvg_rect(thm.backgrounds[bg].renders, hcursor, vcursor, next_line, 12, 3, 8);
+							vcursor = next_line;
+							hcursor = 0;
+						}
+						auto starting_x = hcursor + thm.drop_down_t[selected_template].dropdown_window_margin * 8 * ui_scale;
+						auto starting_y = vcursor + thm.drop_down_t[selected_template].dropdown_window_margin * 8 * ui_scale;
+						bg = thm.drop_down_t[selected_template].dropdown_window_bg;
+						if(bg != -1) {
+							render_asvg_rect(thm.backgrounds[bg].renders, hcursor, vcursor, next_line, 14, 8, 8);
+							
+							vcursor = int32_t(starting_y);
+							next_line = int32_t(starting_y);
+							hcursor = int32_t(starting_x);
+
+							auto lb = thm.drop_down_t[selected_template].list_button;
+							if(lb != -1) {
+								bg = thm.mixed_button_t[lb].primary.bg;
+								if(bg != -1) {
+									render_asvg_rect(thm.backgrounds[bg].renders, hcursor, vcursor, next_line, 10, 2, 8);
+									vcursor = int32_t(starting_y + 16 * ui_scale);
+									hcursor = int32_t(starting_x);
+								}
+							}
+							lb = thm.drop_down_t[selected_template].list_button_alt;
+							if(lb != -1) {
+								bg = thm.mixed_button_t[lb].primary.bg;
+								if(bg != -1) {
+									render_asvg_rect(thm.backgrounds[bg].renders, hcursor, vcursor, next_line, 10, 2, 8);
+									vcursor = next_line;
+									hcursor = int32_t(starting_x);
+								}
+							}
+						}
+					}
 					break;
 				case template_project::template_type::progress_bar:
 					if(0 <= selected_template && selected_template < int32_t(thm.progress_bar_t.size())) {
